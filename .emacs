@@ -8,7 +8,6 @@
 ;; Emacs-w3m default path
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/")
 
-
 ;; Magit files path
 (add-to-list 'load-path "~/.emacs.d/vendors/magit/")
 
@@ -88,8 +87,8 @@
 ;; Pylookup for browsing pydocs
 (autoload 'pylookup-lookup "pylookup")
 (autoload 'pylookup-update "pylookup")
-(setq pylookup-program "~/.emacs.d/pylookup/pylookup.py")
-(setq pylookup-db-file "~/.emacs.d/pylookup/pylookup.db")
+(setq pylookup-program "~/.emacs.d/vendors/pylookup.py")
+(setq pylookup-db-file "~/.emacs.d/vendors/pylookup.db")
 (global-set-key "\C-ch" 'pylookup-lookup)
 
 ;; Add matching parenthesis,single and triple quotes automatically
@@ -123,9 +122,6 @@
 (setq line-number-mode    t)
 (setq column-number-mode  t)
 
-;; remove scrollbar, tabs
-(scroll-bar-mode -1)
-(tabbar-mode -1)
 
 ;; Prevent the annoying beep on errors
 (setq visible-bell t)
@@ -155,3 +151,12 @@
 (setq ido-everywhere t)
 (ido-mode 1)
 
+
+;;---------------------------------
+;; Aquamacs Specific Customization
+;;---------------------------------
+
+(when (featurep 'aquamacs)
+  ;; remove scrollbar, tabs
+  (scroll-bar-mode -1)
+  (tabbar-mode -1))
