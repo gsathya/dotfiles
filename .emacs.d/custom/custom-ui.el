@@ -38,3 +38,14 @@
 ;; Don't show the startup screen
 (setq inhibit-startup-message t)
 
+
+;; Maximise Emacs
+(defvar my-fullscreen-p t "Check if fullscreen is on or off")
+(defun my-toggle-fullscreen ()
+  (interactive)
+  (setq my-fullscreen-p (not my-fullscreen-p))
+  (if my-fullscreen-p
+	  (restore-frame)
+	(maximize-frame)))
+
+(global-set-key (kbd "M-RET") 'my-toggle-fullscreen)

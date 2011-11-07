@@ -62,6 +62,9 @@
 ;; Interactively insert from kill ring
 (require 'browse-kill-ring)
 
+;; Maximise frame
+(require 'maxframe)
+
 ;;--------
 ;; Custom
 ;;--------
@@ -83,4 +86,5 @@
 
 ;; Yasnippet stuff
 (load "custom-yas")
+
 
