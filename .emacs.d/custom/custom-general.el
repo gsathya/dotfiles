@@ -17,10 +17,6 @@
 ;; "y or n" instead of "yes or no"
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; Use C-u to higlight symbol
-(global-set-key [(control u)] 'highlight-symbol-at-point)
-(global-set-key [(meta u)] 'highlight-symbol-next)
-
 ;; Enable Ido mode
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
@@ -35,3 +31,70 @@
 
 ;; Use C-c k invoke browse-kill-ring
 (global-set-key (kbd "C-c k") 'browse-kill-ring)
+
+;; Comment region - C-cq
+;; Uncomment region - C-u C-cq - Doesn't work
+(autoload 'comment-out-region "comment" nil t)
+(global-set-key "\C-cq" 'comment-out-region)
+
+;; Effective window switching
+(global-set-key (kbd "C-c <left>")  'windmove-left)
+(global-set-key (kbd "C-c <right>") 'windmove-right)
+(global-set-key (kbd "C-c <up>")    'windmove-up)
+(global-set-key (kbd "C-c <down>")  'windmove-down)
+
+;; Go to line
+(global-set-key (kbd "M-g")         'goto-line)
+
+                                        ; M-w copies the current line when the region is not active, and
+                                        ; C-w deletes it.
+(defadvice kill-ring-save (before slick-copy activate compile)
+  "When called interactively with no active region, copy a single
+line instead."
+  (interactive
+   (if mark-active (list (region-beginning) (region-end))
+     (message "Copied line")
+     (list (line-beginning-position)
+           (line-beginning-position 2)))))
+
+(defadvice kill-region (before slick-cut activate compile)
+  "When called interactively with no active region, kill a single
+line instead."
+  (interactive
+   (if mark-active (list (region-beginning) (region-end))
+     (list (line-beginning-position)
+           (line-beginning-position 2)))))
+
+;; Don't use Tabs
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
+;; Reload files when its changed on disk
+(global-auto-revert-mode 1)
+
+(defun uniq-lines (beg end)
+  "Unique lines in region.
+Called from a program, there are two arguments:
+BEG and END (region to sort)."
+  (interactive "r")
+  (save-excursion
+    (save-restriction
+      (narrow-to-region beg end)
+      (goto-char (point-min))
+      (while (not (eobp))
+        (kill-line 1)
+        (yank)
+        (let ((next-line (point)))
+          (while
+              (re-search-forward
+               (format "^%s" (regexp-quote (car kill-ring))) nil t)
+            (replace-match "" nil nil))
+          (goto-char next-line))))))
+
+(global-auto-complete-mode t)
+
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/vendors/autocomplete/dict")
+    (require 'auto-complete-config)
+    (ac-config-default)
+
+
+(setq stack-trace-on-error t)

@@ -14,15 +14,33 @@
 ;; Magit files path
 (add-to-list 'load-path "~/.emacs.d/vendors/magit/")
 
+;; Emms file path
+(add-to-list 'load-path "~/.emacs.d/vendors/emms/lisp/")
+
+;; Autocomplete
+(add-to-list 'load-path "~/.emacs.d/vendors/autocomplete")
+
+;; Cedet 
+(load-file "~/.emacs.d/vendors/cedet/common/cedet.el")
+
+;; ECB load path
+(setq stack-trace-on-error t)
+(add-to-list 'load-path "~/.emacs.d/vendors/ecb")
+(setq ecb-cedet-required-version-max '(1 1 0 0))
+
 ;;--------
 ;; Vendors
 ;;--------
+(add-to-list 'load-path "~/.emacs.d/vendors/cedet/cedet/common")
 
 ;; Use iPython interpreter
 (require 'ipython)
 
 ;; Use Python-mode for .py files
 (require 'python-mode)
+
+;; Use Pymacs
+(require 'pymacs)
 
 ;; Use up, down arrow keys to cycle buffer
 (require 'comint)
@@ -50,20 +68,19 @@
 ;; Add Git support
 (require 'magit)
 
-;; Highlight all occurences of a symbol
-(require 'highlight-symbol)
-
 ;; Add line numbers to the left
 (require 'linum+)
-
-;; Rainbow Delimiters
-(require 'rainbow-delimiters)
 
 ;; Interactively insert from kill ring
 (require 'browse-kill-ring)
 
-;; Maximise frame
-(require 'maxframe)
+;; Emms for music stuff
+(require 'emms-setup)
+
+;; Autocomplete mostly py 
+(require 'auto-complete)
+
+(require 'ecb)
 
 ;;--------
 ;; Custom
@@ -87,4 +104,14 @@
 ;; Yasnippet stuff
 (load "custom-yas")
 
+;; Emms stuff
+(load "custom-emms")
 
+;; Escreen mods
+(load "custom-escreen")
+
+;; Js styff
+(load "custom-js")
+
+;; ecb 
+(load "custom-cedet")

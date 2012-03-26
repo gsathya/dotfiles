@@ -1,15 +1,13 @@
-;; Use anything.el for code completion - Doesn't work
-(when (require 'anything-show-completion nil t)
-   (use-anything-show-completion 'anything-ipython-complete
-                                 '(length initial-pattern)))
-
-(add-hook 'python-mode-hook #'(lambda ()
-                                 (define-key py-mode-map (kbd "M-<tab>") 'anything-ipython-complete)))
-(add-hook 'ipython-shell-hook #'(lambda ()
-                                  (define-key py-mode-map (kbd "M-<tab>") 'anything-ipython-complete)))
-(when (require 'anything-show-completion nil t)
-  (use-anything-show-completion 'anything-ipython-complete
-				'(length initial-pattern)))
+(autoload 'python-mode "python-mode" "Python Mode." t)
+(add-to-list 'interpreter-mode-alist '("python" . python-mode))
+(autoload 'pymacs-apply "pymacs")
+(autoload 'pymacs-call "pymacs")
+(autoload 'pymacs-eval "pymacs" nil t)
+(autoload 'pymacs-exec "pymacs" nil t)
+(autoload 'pymacs-load "pymacs" nil t)
+(pymacs-load "ropemacs" "rope-")
+(setq ropemacs-enable-autoimport t)
+(setenv "PYMACS_PYTHON" "python")
 
 ;; Use python-mode for .py files
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
@@ -20,3 +18,4 @@
 (setq pylookup-program "~/.emacs.d/vendors/pylookup.py")
 (setq pylookup-db-file "~/.emacs.d/vendors/pylookup.db")
 (global-set-key "\C-ch" 'pylookup-lookup)
+

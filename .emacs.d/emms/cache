@@ -1,0 +1,2 @@
+;;; .emms-cache -*- mode: emacs-lisp; coding: utf-8; -*-
+(puthash "/Users/sathya/Downloads/Rockstar-320Kbps/13 Sadda Haq.mp3" '(*track* (type . file) (name . "/Users/sathya/Downloads/Rockstar-320Kbps/13 Sadda Haq.mp3") (info-mtime 20104 28210)) emms-cache-db)

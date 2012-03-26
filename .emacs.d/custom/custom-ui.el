@@ -10,7 +10,7 @@
                           #'autopair-python-triple-quote-action))))
 
 ;; Delete trailing white space - Pylint may shout w/o it
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Display line and column numbers
 (setq line-number-mode    t)
@@ -38,14 +38,5 @@
 ;; Don't show the startup screen
 (setq inhibit-startup-message t)
 
-
-;; Maximise Emacs
-(defvar my-fullscreen-p t "Check if fullscreen is on or off")
-(defun my-toggle-fullscreen ()
-  (interactive)
-  (setq my-fullscreen-p (not my-fullscreen-p))
-  (if my-fullscreen-p
-	  (restore-frame)
-	(maximize-frame)))
-
-(global-set-key (kbd "M-RET") 'my-toggle-fullscreen)
+;; Highlight when searching
+(setq search-highlight t)
