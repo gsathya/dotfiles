@@ -100,8 +100,8 @@ BEG and END (region to sort)."
 (setq stack-trace-on-error t)
 
 ;; Use Markdown mode for editing .md files
-(autoload 'markdown-mode "markdown-mode.el"
-  "Major mode for editing Markdown files" t)
+(autoload 'markdown-mode "markdown-mode.el" 
+  "Major mode for editing Markdown files" t) 
 (setq auto-mode-alist
       (cons '("\\.md" . markdown-mode) auto-mode-alist))
 
@@ -117,19 +117,6 @@ BEG and END (region to sort)."
 (autoload 'ack-find-same-file "full-ack" nil t)
 (autoload 'ack-find-file "full-ack" nil t)
 
-;; use web-mode for html shizz
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(defun web-mode-hook ()
-  "Hooks for Web mode."
-  (setq web-mode-markup-indent-offset 2)
-  (local-set-key (kbd "RET") 'newline-and-indent)
-)
-(add-hook 'web-mode-hook  'web-mode-hook)
-
-(setq debug-on-error nil)
-(setq visible-bell nil)
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(setq-default cursor-type 'bar)
-
-(delete-selection-mode 1)
+;; C-n at the end of buffer to create a new line
+;; No need to press <return>
+(setq next-line-add-newlines t)
