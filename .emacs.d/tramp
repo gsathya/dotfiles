@@ -1,4 +1,4 @@
-;; -*- emacs-lisp -*- <13/09/09 22:35:54 /Users/sathya/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <13/11/06 10:08:15 /Users/sathya/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
@@ -21,4 +21,8 @@
   ("perl" "\\perl")
   ("readlink" "\\readlink")
   ("uid-integer" 463714)
-  ("ln" "\\ln")))
+  ("ln" "\\ln"))
+ (["sshx" "sathya" "sathya.noise.gatech.edu" nil nil]
+  nil)
+ (["scp" nil "sshx" nil nil]
+  nil))

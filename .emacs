@@ -50,6 +50,9 @@
 ;; Use up, down arrow keys to cycle buffer
 (require 'comint)
 
+;; Rust support
+(require 'rust-mode)
+
 ;; Anything (Code completion)
 (require 'anything)
 ;(require 'anything-ipython)
@@ -112,7 +115,7 @@
 ;(require 'slim-mode)
 
 ;; Web-mode for html major-mode
-;(require 'web-mode)
+(require 'web-mode)
 
 ;;--------
 ;; Custom
@@ -154,3 +157,4 @@
 (define-key global-map (kbd "RET") 'newline-and-indent)
 (put 'autopair-newline 'disabled nil)
 (put 'upcase-region 'disabled nil)
+(setq ns-use-native-fullscreen nil)
